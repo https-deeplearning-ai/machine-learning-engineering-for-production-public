@@ -6,3 +6,4 @@ uvicorn==0.12.2
 python-multipart==0.0.5
 fastapi==0.63.0
 nest-asyncio==1.5.1
+jupyterlab==3.0.5
