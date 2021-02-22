@@ -1,31 +1,30 @@
-# Ungraded Lab - Deploy a Deep Learning model
+# Ungraded Lab - Deploying a Deep Learning model
  
 ## Introduction
-Welcome to the first week of Machine Learning Engineering for Production Course 1. During this ungraded lab you will get experience on how to deploy an already trained Deep Learning model through a REST API using the library fastAPI.
+Welcome to the first week of Machine Learning Engineering for Production Course 1. During this ungraded lab you will go through the process of deploying an already trained Deep Learning model. To do so, we will take advantage of the user-friendly library fastAPI that provides a nice REST API framework.
  
-This tutorial will show you how to set up everything you need to run this lab locally. This can be done via 2 methods, using `Docker` or using `Python Virtual Environments`. 
+This tutorial is specifically designed to run locally on your machine. This can be done via 2 methods:  using `Python Virtual Environments` or using `Docker`. 
  
-Both should yield the same result so if you already have conda installed we recommend you use the virtual environments method, if not, the Docker method is probably easier to set up.
+Both approaches should yield the same result. If you already have a conda installation available on your computer, we recommend  that you use the virtual environment method. If this is not the case, choose the Docker method as it is easier to set up.
  
-The commands on this tutorial are meant to be run within a terminal. Before going forward **clone this repo in your local filesystem and `cd` to the week1-ungraded-lab directory**.
+As a general note, the commands in this tutorial are meant to be run within a terminal. To begin you need to **clone this repo in your local filesystem and `cd` to the week1-ungraded-lab directory**.
 
 To clone the repo use this command:
 ```bash
 git clone https://github.com/https-deeplearning-ai/MLEP-public.git
 ```
 
-Or if you prefer SSH, use this one:
+or for cloning via SSH use:
 ```bash
 git clone git@github.com:https-deeplearning-ai/MLEP-public.git
 ```
 
-To change directories into the appropriate one, you need to be in the directory where you cloned the repo and use:
+The `cd` command allows you to change directories. Assuming you are at the directory where you issued the cloning command, type the following on your terminal.
 ```bash
 cd MLEP-public/week1-ungraded-lab
 ```
-
-Once in the `week1-ungraded-lab` directory you can see the files in it using the `ls` command.
-Let's take a quick look at them:
+This will bring you to the `week1-ungraded-lab` directory. The `ls` command allows you to list the files and directories.
+Type `ls` and let's take a quick look at the content inside `week1-ungraded-lab` directory:
  
 ```
 .
@@ -38,49 +37,49 @@ Let's take a quick look at them:
 ```
  
  
-## Method 1: Python Virtual Environments with Conda
+## Method 1: Python Virtual Environment with Conda
  
 ### Prerequisites: Have [conda](https://docs.conda.io/en/latest/) installed on your local machine.
  
 You will use Conda as an environment management system so that all the dependencies you need for this ungraded lab are stored in an isolated environment.
  
-Conda includes a lot of libraries so if you are only installing it to complete this lab (and can't or won't use the Docker method), we suggest you check out [miniconda](https://docs.conda.io/en/latest/miniconda.html), which is a minimal version of conda.
+Conda includes a lot of libraries so if you are only installing it to complete this lab , we suggest using [miniconda](https://docs.conda.io/en/latest/miniconda.html), which is a minimal version of conda.
  
-### 1. Create a virtual Environment
+### 1. Creating a virtual Environment
  
-Once you have Conda installed and configured to be run on a shell or terminal (if you are on Windows you might need to use the Anaconda Prompt), create a new developing environment with python 3.7 using the following command:
+Now we assume that you either successfully installed conda or that it was previously available in your system. The first step is  creating a new developing environment. Let's set a new environment with python 3.7 with this command:
  
 ```bash
 conda create --name deploy-lab-env python=3.7
 ```
  
-In case you're wondering, `ugl` stands for "ungraded lab". After it is successfully created, activate it like this:
+After successfully creating the environment, you need to activate it by issuing this command:
  
 ```bash
 conda activate deploy-lab-env
 ```
  
-Now all of the libraries you install will be isolated to this environment. 
+At this point, you will do all your libraries installation and work in this environment. So, whenever working on this ungraded lab, check the deploy-lab-env environment is active.
  
-### 2. Install dependencies using PIP 
+### 2. Installing dependencies using PIP 
  
-Double check that you are currently on the `week1-ungraded-lab` directory, which includes the `requirements.txt` file. This file lists all required dependencies and their respective versions. Now use the following command:
+Before proceeding, double check that you are currently on the `week1-ungraded-lab` directory, which includes the `requirements.txt` file. This file lists all the required dependencies and their respective versions. Now use the following command to install the required dependencies:
  
 ```bash
 pip install -r requirements.txt
 ```
  
-This can take a while depending on the speed of your internet connection. When this is done you should be ready to spin up jupyter lab and begin the ungraded lab.
+This command can take a while to run depending on the speed of your internet connection. Once this step completes you should be ready to spin up jupyter lab and begin working on the ungraded lab.
  
-### 3. Launch Jupyter Lab
+### 3. Launching Jupyter Lab
  
 Jupyter lab was installed during the previous step so you can launch it with this command:
 ```bash
 jupyter lab
 ```
-You will see some information printed in the terminal. Usually you will need to authenticate to use Jupyter lab, for this, copy the token that appears on your terminal, head over to [http://localhost:8888/](http://localhost:8888/) and paste it there.
+After execution, you will see some information printed on the terminal. Usually you will need to authenticate to use Jupyter lab. For this, copy the token that appears on your terminal, head over to [http://localhost:8888/](http://localhost:8888/) and paste it there.
  
-### 4. Run the notebook
+### 4. Running the notebook
  
 Within Jupyter lab you should be in the same directory where you used the `jupyter lab` command.
  
@@ -100,17 +99,17 @@ And... that's it! Have fun deploying a Deep Learning model! :)
 [Docker](https://www.docker.com/) is a tool that allows you to ship your software along with all the dependencies that it needs to run. You can download the free version [here](https://www.docker.com/products/docker-desktop). 
  
  
-### 1. Pull the image from Docker hub
+### 1. Pulling the image from Docker hub
 
 Images are an important concept within the Docker ecosystem. You can think of them as the compilation of all the elements (libraries, files, etc) needed for your software to run. 
 
-By using the following command you will download or pull the image necessary to run this ungraded lab locally:
+Using the following command will download or pull the image necessary to run this ungraded lab locally:
 ```bash
 docker pull deeplearningai/mlepc1w1-ugl:jupyternb
 ```
 
  
-### 2. Run a container out of the image:
+### 2. Running a container out of the image:
 
 Images can also be thought of as the blueprints for containers, which are the actual instances of the software running. To run a container using the image you just pulled, double check that you are currently on the `week1-ungraded-lab` directory and use this command:
 ```bash
@@ -127,7 +126,7 @@ Let's break down this command and its flags:
  
 When the container starts running you will see some information being printed in the terminal. Usually you will need to authenticate to use Jupyter lab, for this copy the token that appears on your terminal, head over to [http://localhost:8888/](http://localhost:8888/) and paste it there.
  
-Once authenticated click in the `/work` directory and you should see all of the files from your current local directory. Look for the `server.ipynb` file and open it to begin the ungraded lab.
+Once you have authenticated, click in the `/work` directory and you should see all of the files from your current local directory. Look for the `server.ipynb` file and open it to begin the ungraded lab.
 
 To stop the container once you are done with the lab just press `Ctrl + C` twice. This will also delete the container.
  
