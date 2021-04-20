@@ -19,6 +19,8 @@ or for cloning via SSH use:
 git clone git@github.com:https-deeplearning-ai/MLEP-public.git
 ```
 
+If you are unsure which method to use for cloning, use the first one.
+
 The `cd` command allows you to change directories. Assuming you are at the directory where you issued the cloning command, type the following on your terminal.
 ```bash
 cd MLEP-public/week1-ungraded-lab
@@ -77,8 +79,12 @@ Jupyter lab was installed during the previous step so you can launch it with thi
 ```bash
 jupyter lab
 ```
-After execution, you will see some information printed on the terminal. Usually you will need to authenticate to use Jupyter lab. For this, copy the token that appears on your terminal, head over to [http://localhost:8888/](http://localhost:8888/) and paste it there.
- 
+After execution, you will see some information printed on the terminal. Usually you will need to authenticate to use Jupyter lab. For this, copy the token that appears on your terminal, head over to [http://localhost:8888/](http://localhost:8888/) and paste it there. Your terminal's output should look very similar to the next image, in which the token has been highlighted for reference:
+
+
+![Token in terminal](./assets/token.png)
+
+
 ### 4. Running the notebook
  
 Within Jupyter lab you should be in the same directory where you used the `jupyter lab` command.
@@ -87,7 +93,7 @@ Look for the `server.ipynb` file and open it to begin the ungraded lab.
 
 To stop jupyter lab once you are done with the lab just press `Ctrl + C` twice.
  
-And... that's it! Have fun deploying a Deep Learning model! :)
+### And... that's it! Have fun deploying a Deep Learning model! :)
 
  
 # 
@@ -125,9 +131,14 @@ Let's break down this command and its flags:
 - --mount: Allows you to mount a directory in your local filesystem within the container. This is very important because if no mounts are present, changes to files will not persist after the container is deleted. In this case we are mounting the current directory `week1-ungraded-lab` onto the `/home/jovyan/work` directory inside the container.
  
 When the container starts running you will see some information being printed in the terminal. Usually you will need to authenticate to use Jupyter lab, for this copy the token that appears on your terminal, head over to [http://localhost:8888/](http://localhost:8888/) and paste it there.
+
+Your terminal's output should look very similar to the next image, in which the token has been highlighted for reference:
+
+
+![Token in terminal](./assets/token.png)
  
 Once you have authenticated, click in the `/work` directory and you should see all of the files from your current local directory. Look for the `server.ipynb` file and open it to begin the ungraded lab.
 
 To stop the container once you are done with the lab just press `Ctrl + C` twice. This will also delete the container.
  
-And, that's it! Have fun deploying a Deep Learning model! :)
+### And... that's it! Have fun deploying a Deep Learning model! :)
