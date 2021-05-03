@@ -52,16 +52,16 @@ Conda includes a lot of libraries so if you are only installing it to complete t
 Now we assume that you either successfully installed conda or that it was previously available in your system. The first step is  creating a new developing environment. Let's set a new environment with python 3.7 with this command:
  
 ```bash
-conda create --name deploy-lab-env python=3.7
+conda create --name mlep-w1-lab python=3.7
 ```
  
 After successfully creating the environment, you need to activate it by issuing this command:
  
 ```bash
-conda activate deploy-lab-env
+conda activate mlep-w1-lab
 ```
  
-At this point, you will do all your libraries installation and work in this environment. So, whenever working on this ungraded lab, check the deploy-lab-env environment is active.
+At this point, you will do all your libraries installation and work in this environment. So, whenever working on this ungraded lab, check the mlep-w1-lab environment is active.
  
 ### 2. Installing dependencies using PIP 
  
