@@ -1,5 +1,5 @@
 # Machine Learning Engineering for Production Specialization - Public Repo
 
-Welcome to the public repo for [deeplearning.ai](deeplearning.ai)'s Machine Learning Engineering for Production Specialization.
+Welcome to the public repo for [deeplearning.ai](https://www.deeplearning.ai/)'s Machine Learning Engineering for Production Specialization.
 
 Here you will find public resources for the courses of this specialization.
