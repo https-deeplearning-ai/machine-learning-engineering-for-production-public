@@ -23,7 +23,7 @@ If you are unsure which method to use for cloning, use the first one.
 
 The `cd` command allows you to change directories. Assuming you are at the directory where you issued the cloning command, type the following on your terminal.
 ```bash
-cd MLEP-public/week1-ungraded-lab
+cd MLEP-public/course1/week1-ungraded-lab/
 ```
 This will bring you to the `week1-ungraded-lab` directory. The `ls` command allows you to list the files and directories.
 Type `ls` and let's take a quick look at the content inside `week1-ungraded-lab` directory:
