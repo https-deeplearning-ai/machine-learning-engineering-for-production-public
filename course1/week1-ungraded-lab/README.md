@@ -23,19 +23,18 @@ If you are unsure which method to use for cloning, use the first one.
 
 The `cd` command allows you to change directories. Assuming you are at the directory where you issued the cloning command, type the following on your terminal.
 ```bash
-cd MLEP-public/week1-ungraded-lab
+cd MLEP-public/course1/week1-ungraded-lab
 ```
 This will bring you to the `week1-ungraded-lab` directory. The `ls` command allows you to list the files and directories.
 Type `ls` and let's take a quick look at the content inside `week1-ungraded-lab` directory:
  
 ```
 .
-└── Root of repo/
-    └── week1-ungraded-lab (this directory)
-        ├── images (includes some images from ImageNet)
-        ├── server.ipynb (Part 1 of the ungraded lab)
-        ├── client.ipynb (Part 2 of the ungraded lab)
-        └── requirements.txt (python dependencies)
+└── week1-ungraded-lab (this directory)
+    ├── images (includes some images from ImageNet)
+    ├── server.ipynb (Part 1 of the ungraded lab)
+    ├── client.ipynb (Part 2 of the ungraded lab)
+    └── requirements.txt (python dependencies)
 ```
  
  
