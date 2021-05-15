@@ -31,11 +31,13 @@ Type `ls` and let's take a quick look at the content inside `week1-ungraded-lab`
 ```
 .
 └── Root of repo/
-    └── week1-ungraded-lab (this directory)
-        ├── images (includes some images from ImageNet)
-        ├── server.ipynb (Part 1 of the ungraded lab)
-        ├── client.ipynb (Part 2 of the ungraded lab)
-        └── requirements.txt (python dependencies)
+    └── course1
+        └── week1-ungraded-lab (this directory)
+            ├── assets (includes an image for README.md)
+            ├── images (includes some images from ImageNet)
+            ├── server.ipynb (Part 1 of the ungraded lab)
+            ├── client.ipynb (Part 2 of the ungraded lab)
+            └── requirements.txt (python dependencies)
 ```
  
  
