@@ -119,7 +119,7 @@ docker pull deeplearningai/mlepc1w1-ugl:jupyternb
 
 Images can also be thought of as the blueprints for containers, which are the actual instances of the software running. To run a container using the image you just pulled, double check that you are currently on the `week1-ungraded-lab` directory and use this command:
 ```bash
-docker run -it --rm -p 8888:8888 -p 8000:8000 --mount type=bind,source=$(pwd),target=/home/jovyan/work deeplearningai/mlepc1w1-ugl:jupyternb
+docker run -it --rm -p 8888:8888 -p 8000:8000 --mount type=bind,source="$(pwd)",target=/home/jovyan/work deeplearningai/mlepc1w1-ugl:jupyternb
 ```
  
 Let's break down this command and its flags:
