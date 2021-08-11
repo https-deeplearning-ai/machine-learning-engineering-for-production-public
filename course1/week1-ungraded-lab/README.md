@@ -11,12 +11,12 @@ As a general note, the commands in this tutorial are meant to be run within a te
 
 To clone the repo use this command:
 ```bash
-git clone https://github.com/https-deeplearning-ai/MLEP-public.git
+git clone https://github.com/https-deeplearning-ai/machine-learning-engineering-for-production-public.git
 ```
 
 or for cloning via SSH use:
 ```bash
-git clone git@github.com:https-deeplearning-ai/MLEP-public.git
+git clone git@github.com:https-deeplearning-ai/machine-learning-engineering-for-production-public.git
 ```
 
 If you are unsure which method to use for cloning, use the first one.
