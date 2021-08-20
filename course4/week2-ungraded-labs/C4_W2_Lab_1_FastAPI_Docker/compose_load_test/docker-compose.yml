@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  no-batch:
+    image: mlepc4w2-ugl:no-batch
+    links:
+      - locust
+  batch-1:
+    image: mlepc4w2-ugl:with-batch
+    links:
+      - locust
+  batch-32:
+    image: mlepc4w2-ugl:with-batch
+    links:
+      - locust
+  batch-64:
+    image: mlepc4w2-ugl:with-batch
+    links:
+      - locust
+  locust:
+    image: locustio/locust
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py
