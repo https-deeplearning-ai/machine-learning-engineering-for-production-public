@@ -1,9 +1,9 @@
 # Ungraded Lab: Practice Kubernetes in your Local Environment
 
-In the early parts of this week, you went through the basics of Kubernetes by doing imperative commands in the interactive shell (i.e. with `kubectl`). It shows how this tool can be used to orchestrate containers to host an application. If you haven't done that exercise, we highly encourage you to go back because we will assume that you are already familiar with the concepts discussed in [those 6 modules](https://kubernetes.io/docs/tutorials/kubernetes-basics/). This lab will be an extension of that activity and will show a few more concepts to prepare you for this week's graded assignment. Specifically, you will:
+In the previous reading item, you went through the basics of Kubernetes by doing imperative commands in the interactive shell (i.e. with `kubectl`). It shows how this tool can be used to orchestrate containers to host an application. If you haven't done that exercise, we highly encourage you to go back because we will assume that you are already familiar with the concepts discussed in [those 6 modules](https://kubernetes.io/docs/tutorials/kubernetes-basics/). This lab will be an extension of that activity and will show a few more concepts to prepare you for this week's graded assignment. Specifically, you will:
 
 * setup Kubernetes in your local machine for learning and development
-* create Kubernetes resources using YAML files
+* create Kubernetes objects using YAML files
 * deploy containers running a Tensorflow model server
 * access the deployment using a Nodeport service
 * autoscale the deployment to dynamicaly handle incoming traffic 
@@ -32,11 +32,13 @@ The application you'll be building will look like the figure below:
 
 <img src='img/kubernetes.png' alt='img/kubernetes.png'>
 
-You will create a deployment that spins up containers that runs a model server. In this case, that will be from the `tensorflow/serving` image you have used in the previous labs. The deployment can be accessed by external terminals (i.e. your users) through an exposed service. This brings inference requests to the model servers and responds with predictions from your model.
+You will create a deployment that spins up containers that runs a model server. In this case, that will be from the `tensorflow/serving` image you already used in the previous labs. The deployment can be accessed by external terminals (i.e. your users) through an exposed service. This brings inference requests to the model servers and responds with predictions from your model.
+
+Lastly, the deployment will spin up or spin down pods based on CPU utilization. It will start with one pod but when the load exceeds a pre-defined point, it will spin up additional pods to share the load.
 
 ## Start Minikube
 
-You are now almost ready to start your Kubernetes cluster. There is just one more additional step. As mentioned earlier, Minikube runs inside a virtual machine. That implies that the pods you will create later on will only see the volumes inside this VM. Thus, if we want to load a model into your pods that run your model server, then you should first mount this model inside Minikube's VM. Let's set that up now.
+You are now almost ready to start your Kubernetes cluster. There is just one more additional step. As mentioned earlier, Minikube runs inside a virtual machine. That implies that the pods you will create later on will only see the volumes inside this VM. Thus, if you want to load a model into your pods, then you should first mount the location of this model inside Minikube's VM. Let's set that up now.
 
 You will be using the `half_plus_two` model that you saw in earlier ungraded labs. You can copy it to your `/var/tmp` directory (Mac, Linux) or `C:/tmp` (Windows) so we'll have a common directory to mount to the VM. You can use the command below for Mac and Linux:
 
@@ -64,7 +66,15 @@ minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=virtual
 
 ## Creating Objects with YAML files
 
-In the official Kubernetes basics tutorial, you mainly used `kubectl` to create objects such as pods, deployments, and services. While this definitely works, your setup will be more portable and easier to maintain if you configure them using [YAML](https://yaml.org/spec/1.2/spec.html) files. 
+In the official Kubernetes basics tutorial, you mainly used `kubectl` to create objects such as pods, deployments, and services. While this definitely works, your setup will be more portable and easier to maintain if you configure them using [YAML](https://yaml.org/spec/1.2/spec.html) files. We've included these in the `yaml` directory of this ungraded lab so you can peruse how these are constructed. The [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) also documents the supported fields for each object. For example, the API for Pods can be found [here](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/).
+
+One way to generate this when you don't have a template to begin with is to first use the `kubectl` command then use the `-o yaml` flag to output the YAML file for you. For example, the [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) shows that you can generate the YAML for a pod running an `nginx` image with this command:
+
+```
+kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yaml
+```
+
+All objects needed for this lab are already provided and you are free to modify them later when you want to practice different settings. Let's go through them one by one in the next sections.
 
 ### Config Maps
 
