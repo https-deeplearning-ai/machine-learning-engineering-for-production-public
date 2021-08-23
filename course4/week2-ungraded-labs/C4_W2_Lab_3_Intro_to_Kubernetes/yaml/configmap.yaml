@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tfserving-configs
+data:
+  MODEL_NAME: half_plus_two
+  MODEL_PATH: /models/half_plus_two
