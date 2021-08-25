@@ -190,7 +190,7 @@ This will display some relevant information for each running docker process. If 
 
 Docker automatically assigns a unique name to each container and this can be seen with the above command which should yield an output similar to this:
 
-![container_name](../assets/container_name.png)
+![container_name](../../assets/container_name.png)
 
 To stop a container simply use the command:
 
