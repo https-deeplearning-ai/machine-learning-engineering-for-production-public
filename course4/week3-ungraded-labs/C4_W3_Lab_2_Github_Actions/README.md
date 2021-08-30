@@ -119,6 +119,7 @@ jobs:
         working-directory: course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/
 ```
 
+In the next part you need to define all of the jobs than will run when this action is triggered. In this case you only need one job, which will be named `test` and will run in an environment that uses the latest release of Ubuntu. You can also define some default behavior for the job such as the desired shell, `bash` in this case, and the working directory within the repo. This means that the action will run as it had `cd` into the `course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/` directory first.
 
 ```yml
     steps:
@@ -134,9 +135,26 @@ jobs:
         name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy fastapi uvicorn scikit-learn pytest
+          pip install -r requirements.txt
       -
         name: Test with pytest
         run: |
+          cd app/
           pytest
 ```
+
+Finally you need to specify the `steps` for this action to be completed. This is a sequence of commands to achieve the functionality you strive for.  `steps` have several values associated such as:
+- `name`: The name of the step.
+
+- `uses`: You can specify an already existing `Action` as an step on one of your own. This is pretty cool because it allows for reutilization of Actions. 
+- `run`: Instead of using an existing Action you might need to run a command. Since you are using `bash` inside a Linux VM, these commands should follow the correct syntax.
+- `with`: You might need to specify some additional values. This field is for such cases.
+
+
+Let's understand every step in order:
+
+- The first step uses the `actions/checkout@v2` Action. This is usually included in every Action since it allows GitHub to access or check-out your repo.
+
+- Now that your repo has been checked-out, you need to set an environment capable of running your Python code. To accomplish this the `actions/setup-python@v2` Actions is used while specifying the desired Python version.
+- Having a Python supported environment it is time to install of the dependencies that your application needs. You can do so by using upgrading `pip` and then using it to install the dependencies listed in the `requirements.txt` file.
+- Finally you can run your unit tests by simply using the `pytest` command. Notice that you needed to `cd` into the `app` directory first.
