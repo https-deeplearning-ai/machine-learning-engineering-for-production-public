@@ -158,3 +158,79 @@ Let's understand every step in order:
 - Now that your repo has been checked-out, you need to set an environment capable of running your Python code. To accomplish this the `actions/setup-python@v2` Actions is used while specifying the desired Python version.
 - Having a Python supported environment it is time to install of the dependencies that your application needs. You can do so by using upgrading `pip` and then using it to install the dependencies listed in the `requirements.txt` file.
 - Finally you can run your unit tests by simply using the `pytest` command. Notice that you needed to `cd` into the `app` directory first.
+
+Now that you have a better sense of how to configure Actions it is time to put them to test.
+
+## Testing the CI/CD pipeline
+
+Within the `app` directory a copy of the server that serves predictions for the Wine dataset (that you used in a previous ungraded lab) is provided. The file is the same as in that previous lab with the exception that the classifier is loaded directly into global state instead of within a function that runs when the server is started. This is done because you will be performing unit tests on the classifier without starting the server.
+
+### Unit testing with pytest
+
+To perform unit testing you will use the `pytest` library. When using this library you should place your tests within a Python script that starts with the prefix `test_`, in this case it is called `test_clf.py` as you will be testing the classifier. 
+
+Let's take a look at the contents of this file:
+
+```python
+import pickle
+from main import clf
+
+def test_accuracy():
+
+    # Load test data
+    with open("data/test_data.pkl", "rb") as file:
+        test_data = pickle.load(file)
+
+    # Unpack the tuple
+    X_test, y_test = test_data
+
+    # Compute accuracy of classifier
+    acc = clf.score(X_test, y_test)
+
+    # Accuracy should be over 90%
+    assert acc > 0.9
+```
+
+There is only one unit test defined in the `test_accuracy` function. This function loads the test data that was saved in pickle format and is located in the `data/test_data.pkl` file. Then it uses this data to compute the accuracy of the classifier on this test data.
+
+If the accuracy is greater than 90% then the test passes. Otherwise it fails.
+
+## Running the GitHub Action
+
+To run the unit test using the CI/CD pipeline you need to push some changes to the remote repository. To do this, **add a comment somewhere in the `main.py` file and save the changes**.
+
+Now you will use git to push changes to the remote version of your fork. 
+- Begin by checking that there was a change using the `git status` command. You should see `main.py` in the list that is outputted.
+
+- Now stage all of the changes by using the command `git add --all`.
+- Create a commit with the command `git commit -m "Testing the CI/CD pipeline"`. 
+- Finally push the changes using the command `git push origin main`.
+
+With the push the CI/CD pipeline should have been triggered. To see it in action visit your forked repo in a browser and click the `Actions` button:
+
+![action-button](../../assets/action-button.png)
+
+Here you will see all of the runs of the workflows you have set up. Right now you should see a run that looks like this (notice that the name is the same as the commit message):
+
+![workflow-run](../../assets/workflow-run.png)
+
+You can click on the name of this run to see a summary of the jobs that made it up. If you do so you will see there is only the job `test` that you defined in the `YAML` file:
+
+![job](../../assets/job.png)
+
+Now you can click once again the job to see a detailed list of all the steps of that job:
+
+![steps](../../assets/steps.png)
+
+Notice that these steps are the sames you defined in the configuration file plus some automatically added by GitHub.
+
+This Action takes around 40 seconds to complete so by now it should have finished. Click again on the `Actions` button to see the list of workflow runs and you should see the run accompanied by a green icon showing that all tests passed successfully:
+
+![good-run](../../assets/good-run.png)
+
+You just run your own CI/CD pipeline! Pretty cool!
+
+## Changing the code
+
+![bad-run](../../assets/bad-run.png)
+![error-detail](../../assets/error-detail.png)
