@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push request events only when there are changes in the desired path
   push:
     paths:
-      - 'course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/**'
+      - 'course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/**'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,7 +20,7 @@ jobs:
         # Use bash as the shell
         shell: bash
         # Specify the working directory for the worflow
-        working-directory: course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/
+        working-directory: course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
