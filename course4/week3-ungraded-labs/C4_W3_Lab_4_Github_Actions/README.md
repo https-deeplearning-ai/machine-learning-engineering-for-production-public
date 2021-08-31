@@ -191,7 +191,7 @@ def test_accuracy():
     assert acc > 0.9
 ```
 
-There is only one unit test defined in the `test_accuracy` function. This function loads the test data that was saved in pickle format and is located in the `data/test_data.pkl` file. Then it uses this data to compute the accuracy of the classifier on this test data.
+There is only one unit test defined in the `test_accuracy` function. This function loads the test data that was saved in pickle format and is located in the `data/test_data.pkl` file. Then it uses this data to compute the accuracy of the classifier on this test data. Something important is that this data is **not scaled** as the test expects the classifier to be a `sklearn.pipeline.Pipeline` which first step is a `sklearn.preprocessing.StandardScaler`.
 
 If the accuracy is greater than 90% then the test passes. Otherwise it fails.
 
@@ -230,7 +230,96 @@ This Action takes around 40 seconds to complete so by now it should have finishe
 
 You just run your own CI/CD pipeline! Pretty cool!
 
-## Changing the code
+## Running the pipeline more times
+
+### Changing the code
+
+Suppose a teammate tells you that the Data Science team has developed a new model with an accuracy of 95% (the current one has 91%) so you decide to use new model instead. It is found in the `models/wine-95.pkl` file so to use it in your webserver you need to modify `main.py`. You should change the following lines:
+
+```python
+with open("models/wine.pkl", "rb") as file:
+    clf = pickle.load(file)
+```
+
+So they look like this:
+
+```python
+with open("models/wine-95.pkl", "rb") as file:
+    clf = pickle.load(file)
+```
+
+Once the change is saved, use git to push the changes as before. Use the following commands in sequence:
+
+- `git add -all`
+- `git commit -m "Adding new classifier"`
+- `git push origin main`
+
+With the push the CI/CD pipeline should have been triggered again. Once again go into the browser and check it. This time you will find that the tests failed. This can be done by the red icon next to the run:
 
 ![bad-run](../../assets/bad-run.png)
+
+So, what happened?
+You can dig deeper by going into the job and then into the steps that made it up. You should see something like this:
+
 ![error-detail](../../assets/error-detail.png)
+
+The unit test failed because this new model has an accuracy lower to 90%. This happened because due to some miscommunication between teams, the Data Science team did not provide a `sklearn.pipeline.Pipeline` which first step is a `sklearn.preprocessing.StandardScaler`, but only the model since they expected the test data to be already scaled.
+
+### Changing the code again
+
+With this in mind you ask them to provide the model with the required characteristics. This one  is found in the `models/wine-95-fixed.pkl` file so to use it  you need to modify `main.py` once again. You should change the following lines:
+
+```python
+with open("models/wine-95.pkl", "rb") as file:
+    clf = pickle.load(file)
+```
+
+So they look like this:
+
+```python
+with open("models/wine-95-fixed.pkl", "rb") as file:
+    clf = pickle.load(file)
+```
+
+You also decided to add a new unit test to catch this error explicitly if it happens again. To do so modify the `test_clf.py` file to include these imports:
+
+```python
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+```
+
+And add a new unit test that looks like this:
+
+```python
+def test_pipeline_and_scaler():
+
+    # Check if clf is an instance of sklearn.pipeline.Pipeline 
+    isPipeline = isinstance(clf, Pipeline)
+    assert isPipeline
+    
+    if isPipeline:
+        # Check if first step of pipeline is an instance of 
+        # sklearn.preprocessing.StandardScaler
+        firstStep = [v for v in clf.named_steps.values()][0]
+        assert isinstance(firstStep, StandardScaler)
+```
+
+This new test will check that the classifier is of type `sklearn.pipeline.Pipeline` and that its first step is a `sklearn.preprocessing.StandardScaler`.
+
+Once the change is saved, use git to push the changes as before. Use the following commands in sequence:
+
+- `git add -all`
+- `git commit -m "Adding new classifier with scaling"`
+- `git push origin main`
+
+Now all of the tests should pass!
+
+-----
+
+**Congratulations on finishing this ungraded lab!**
+
+In this lab you saw what GitHub Actions is, how it can be configured and how it can be used to run CI/CD pipelines. This topic is very cool since it automates many repetitive processes such as running unit tests to ensure the quality of the software you are shipping.
+
+These pipelines are meant to run really quickly so you can iterate your code in an agile and safe way.
+
+**Keep it up!**
