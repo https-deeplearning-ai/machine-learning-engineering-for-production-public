@@ -45,6 +45,14 @@ git clone git@github.com:your-username/machine-learning-engineering-for-producti
 
 If you are unsure which method to use for cloning, use the first one.
 
+Now you need to enable Actions for your fork. You can do so by clicking on the Actions button:
+
+![action-button](../../assets/action-button.png)
+
+And clicking the green button to enable Actions:
+
+![enable-actions](../../assets/enable-actions.png)
+
 ## Navigating the fork
 
 Now `cd` into your fork. You can do so by using the command `cd machine-learning-engineering-for-production-public` while on the directory that contains your fork.
@@ -61,7 +69,7 @@ on:
   # Triggers the workflow on push request events only when there are changes in the desired path
   push:
     paths:
-      - 'course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/**'
+      - 'course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/**'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -74,7 +82,7 @@ jobs:
         # Use bash as the shell
         shell: bash
         # Specify the working directory for the workflow
-        working-directory: course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/
+        working-directory: course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -104,10 +112,10 @@ name: C4W3-Ungraded-Lab
 on:
   push:
     paths:
-      - 'course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/**'
+      - 'course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/**'
 ```
 
-In this first part you need to define a name for your Action so you can differentiate it from other ones. After this you need to specify what will trigger it, in this case the Action will be run automatically with a **push** that has changes to any file within the `course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions` directory.
+In this first part you need to define a name for your Action so you can differentiate it from other ones. After this you need to specify what will trigger it, in this case the Action will be run automatically with a **push** that has changes to any file within the `course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions` directory.
 
 ```yml
 jobs:
@@ -116,10 +124,10 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/
+        working-directory: course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/
 ```
 
-In the next part you need to define all of the jobs than will run when this action is triggered. In this case you only need one job, which will be named `test` and will run in an environment that uses the latest release of Ubuntu. You can also define some default behavior for the job such as the desired shell, `bash` in this case, and the working directory within the repo. This means that the action will run as it had `cd` into the `course4/week3-ungraded-labs/C4_W3_Lab_2_Github_Actions/` directory first.
+In the next part you need to define all of the jobs than will run when this action is triggered. In this case you only need one job, which will be named `test` and will run in an environment that uses the latest release of Ubuntu. You can also define some default behavior for the job such as the desired shell, `bash` in this case, and the working directory within the repo. This means that the action will run as it had `cd` into the `course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/` directory first.
 
 ```yml
     steps:
@@ -206,9 +214,8 @@ Now you will use git to push changes to the remote version of your fork.
 - Create a commit with the command `git commit -m "Testing the CI/CD pipeline"`. 
 - Finally push the changes using the command `git push origin main`.
 
-With the push the CI/CD pipeline should have been triggered. To see it in action visit your forked repo in a browser and click the `Actions` button:
+With the push the CI/CD pipeline should have been triggered. To see it in action visit your forked repo in a browser and click the `Actions` button.
 
-![action-button](../../assets/action-button.png)
 
 Here you will see all of the runs of the workflows you have set up. Right now you should see a run that looks like this (notice that the name is the same as the commit message):
 
@@ -312,7 +319,7 @@ Once the change is saved, use git to push the changes as before. Use the followi
 - `git commit -m "Adding new classifier with scaling"`
 - `git push origin main`
 
-Now all of the tests should pass!
+Now all of the tests should pass! With this you can be sure that this new version of the model is working as expected.
 
 -----
 
