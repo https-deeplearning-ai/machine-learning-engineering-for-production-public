@@ -4,7 +4,7 @@ Welcome to the first week of the final course of the Machine Learning Engineerin
 
 ---------
 ## Docker
-These ungraded labs will be using [Docker](https://www.docker.com/) extensively. As a result of this, most of them will require you to run the code in your local machine as Coursera currently has no support for Docker. 
+These ungraded labs will be using [Docker](https://www.docker.com/) extensively. As a result of this, most of them will **require you to run the code in your local machine as Coursera currently has no support for Docker**. 
 
 ### Why Docker?
 

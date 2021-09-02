@@ -6,7 +6,7 @@ In this lab you will be using TFS to deploy a dummy machine learning model local
 
 If you are a Windows user remember that **this lab is meant to be run using a WSL2 shell.** To open such shell use the Windows search bar and type either `wsl` or `bash`, one of these should be available if you installed WSL2 previously.
 
-Let's get started!
+Open your terminal (or shell) and let's get started!
 
 ----------------------
 
@@ -70,7 +70,7 @@ Wow, there is a lot of information in this command. Let's break it down to under
 
 - `--rm`: Delete this container after stopping running it. This is to avoid having to manually delete the container. Deleting unused containers helps your system to stay clean and tidy.
 
-- `-p 8501:8501`: This flags performs an operation knows as **port mapping**. The container, as well as your local machine, has its own set of ports. So you are able to access the `port 8501` within the container, you need to **map** it to a port on your computer. In this case it is mapped to the `port 8501` in your machine. This port is chosen as it is the default port to interact with the model through a `REST API`. If you were using a different protocol such as [`gRPC`](https://grpc.io/) you will need to use `port 8500`. More information on this in the [tutorial](https://www.tensorflow.org/tfx/serving/docker) mentioned at the beginning of the lab.
+- `-p 8501:8501`: This flags performs an operation knows as **port mapping**. The container, as well as your local machine, has its own set of ports. In order to access the `port 8501` within the container, you need to **map** it to a port on your computer. In this case it is mapped to the `port 8501` in your machine. This port is chosen as it is the default port to interact with the model through a `REST API`. If you were using a different protocol such as [`gRPC`](https://grpc.io/) you will need to use `port 8500`. More information on this in the [tutorial](https://www.tensorflow.org/tfx/serving/docker) mentioned at the beginning of the lab.
 - `--mount type=bind,source=dir/in/your/pc,target=dir/in/container`: This flag allows you to **mount** a directory in your pc to a directory within the container. This is very important because containers usually have short lifetimes and without mounting files onto them there is no way of persisting changes done to these files when the container was running.
 - `-e MODEL_NAME=half_plus_two`: Will create the environment variable `MODEL_NAME` and assign to it the value of `half_plus_two`.
 - `-t`: Attaches a pseudo-terminal to the container so you can check what is being printed in the standard streams of the container. This will allow you to see the logs printed out by TFS.
