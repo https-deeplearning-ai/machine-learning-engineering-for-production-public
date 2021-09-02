@@ -8,9 +8,14 @@ These ungraded labs will be using [Docker](https://www.docker.com/) extensively.
 
 ### Why Docker?
 
-Docker is an amazing tool that allows you to ship your software along with all of its dependencies. This is great because it enables you to run software even without installing the required interpreters or compilers for it to run. Let's use an example to explain this better: 
+Docker is an amazing tool that allows you to **ship your software along with all of its dependencies**. This is great because it enables you to run software even without installing the required interpreters or compilers for it to run. 
 
-Suppose you trained a Deep Learning model using Python along with some libraries such as Tensorflow or JAX. For this you created a virtual environment in your local machine. Everything works fine but now you want to share this model with a colleague of yours who does not have Python installed, much less any of the required libraries. In a pre-Docker world you would have to help her install all of this software just to run your model. Using Docker you can just ask her to install Docker and share a Docker image that includes all of your software.
+Let's use an example to explain this better: 
+
+Suppose you trained a Deep Learning model using Python along with some libraries such as Tensorflow or JAX. For this you created a virtual environment in your local machine. Everything works fine but now you want to share this model with a colleague of yours who does not have Python installed, much less any of the required libraries. 
+
+In a pre-Docker world your 
+colleague would have to install all of this software just to run your model. Instead by installing Docker you can share a Docker image that includes all of your software and that will be all that is needed.
 
 ### Some key concepts
 
@@ -19,7 +24,7 @@ You just read about Docker images and might be wondering what they are. Now you 
 - `Dockerfile`: This is a special file that contains all of the instructions required to build an image. These instructions can be anything from "install Python version 3.7" to "copy my code inside the image".
 
 - `Image`: This refers to the collection of all your software in one single place. Using the previous example, the image will include Python, Tensorflow, JAX and your code. This will be achieved by setting the appropriate instructions within the Dockerfile.
-- `Container`: This a running instance of an image. Image by themselves don't do much aside from saving the information of your code and its dependencies. You need to run a container out of them to actually run the code within. Containers are usually meant to perform a single task but the can be used as runtimes to run software that you haven't installed.
+- `Container`: This a running instance of an image. Images by themselves don't do much aside from saving the information of your code and its dependencies. You need to run a container out of them to actually run the code within. Containers are usually meant to perform a single task but they can be used as runtimes to run software that you haven't installed.
 
 Now that you have a high level idea of how Docker works it is time for you to install it. If you already have it installed you can skip most of the following items.
 
@@ -28,9 +33,14 @@ Now that you have a high level idea of how Docker works it is time for you to in
 
 To install the free version of Docker visit this [link](https://www.docker.com/products/docker-desktop). 
 
-If you are currently on a Windows machine we recommend you install [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10), in particular a Debian-based distribution such as Ubuntu. This will will enable a real Linux kernel inside your Windows OS and will get full usage out of Docker and other command line tools you will be using such as [curl](https://curl.se/). **Machine learning deployment is usually done in Linux machines on the cloud so it is good that you get to know this OS for the purpose of deploying your models**.
+## Note for Windows users
+If you are currently on a Windows machine we recommend you install [WSL2](https://docs.microsoft.com/en-us/windows/wsl/install-win10), in particular a Debian-based distribution such as **Ubuntu**. This will will enable a real Linux kernel inside your Windows OS and will get full usage out of Docker and other command line tools you will be using such as [curl](https://curl.se/). **Machine learning deployment is usually done in Linux machines on the cloud so it is good that you get to know this OS for the purpose of deploying your models**.
 
 If you already have WSL2 installed check out this [link](https://docs.docker.com/docker-for-windows/wsl/) to complete the Docker Desktop installation.
+
+**All of the local ungraded labs in this course should be run using a WSL2 shell.** To open such shell use the Windows search bar and type either `wsl` or `bash`, one of these should be available if you installed WSL2 previously.
+
+You may also like to install the [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started) since it allows for a better experience to deal with all your shells and command lines.
 
 ----
 ## Testing the Docker installation
@@ -45,6 +55,8 @@ This command will try to run the `docker/whalesay` image. Since you probably don
 
 If you think of a funny thing for the Docker whale to say be sure to replace the message above with it and send the image to your friends.
 
+If the command didn't work try following the previous steps again.
+
 -----
 ### Check your curl installation
 
@@ -53,13 +65,13 @@ Another tool that you will be using during these labs is [curl](https://curl.se/
 curl -V
 ```
 
-If the `curl` command is not recognized then you can install it on a Linux machine with this command:
+If the `curl` command is not recognized then you can install it on a Debian-based Linux (like Ubuntu) machine with this command:
 
 ```bash
 apt-get install curl
 ```
 
-If you are on other OS look up on google how to install it, it should be pretty straightforward.
+If you are on other OS like Mac, look up on google how to install it, it should be pretty straightforward.
 
 `curl` is just an HTTP client, if you prefer other or an app with a graphical interface instead of the command line you can use something like [postman](https://www.postman.com/).
 
