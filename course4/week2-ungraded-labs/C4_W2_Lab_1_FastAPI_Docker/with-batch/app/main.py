@@ -18,16 +18,11 @@ def load_clf():
     with open("../app/wine.pkl", "rb") as file:
         global clf
         clf = pickle.load(file)
-        print("--------------------" * 3)
-        print(
-            f"MODEL INFO: Using pipeline for classification with steps:\n  1. Scaler: {clf.named_steps.get('scaler')}\n  2. Classifier: {clf.named_steps.get('random-forest')}"
-        )
-        print("--------------------" * 3)
 
 
 @app.get("/")
 def home():
-    return "Congratulations! Your API is working as expected. This new version allows for batching. Now head over to http://localhost:81/docs."
+    return "Congratulations! Your API is working as expected. This new version allows for batching. Now head over to http://localhost:81/docs"
 
 
 @app.post("/predict")

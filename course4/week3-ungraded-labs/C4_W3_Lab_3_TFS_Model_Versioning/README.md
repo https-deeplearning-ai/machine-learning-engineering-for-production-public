@@ -2,7 +2,9 @@
 
 Welcome! During this lab you will take a look at how to version models using TFS. This topic is very important because models usually change over time and you need a way to control the version that is live for most users while being able to work on newer versions. Other uses of this are canary deployment or A/B testing.
 
-Before going forward make sure you have the `tensorflow/serving:latest` Docker image in your local machine. You can do so by using the `docker images` command. If the image does not appear in the list you can download it using the `docker pull tensorflow/serving` command.
+Before going forward make sure you have the `tensorflow/serving:latest` Docker image in your local machine. You can do so by using the `docker images` command. If the image does not appear in the list you can download it using the `docker pull tensorflow/serving` command. 
+
+Open a terminal and `cd` into the directory that contains the files needed by this lab. Assuming you are on the root of the repo you can use the command `cd course4/week3-ungraded-labs/C4_W3_Lab_3_TFS_Model_Versioning`.
 
 Let's get started!
 

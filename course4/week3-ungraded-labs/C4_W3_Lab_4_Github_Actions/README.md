@@ -6,7 +6,7 @@ This lab is going to be different to the previous ones for several reasons:
 - You will need to [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) this repo so you can run GH actions on your own copy of the repo.
 
 - You will need to edit the code by pasting snippets provided in this tutorial.
-- You will push changes to your forked repo by using git commands. Don't worry if you are very familiar with git as all commands will be explained here.
+- You will push changes to your forked repo by using git commands. Don't worry if you are not very familiar with git as all commands will be explained here.
 
 Let's get started!
 

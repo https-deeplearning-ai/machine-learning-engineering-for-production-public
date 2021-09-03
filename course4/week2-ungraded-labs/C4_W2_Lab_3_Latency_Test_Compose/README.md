@@ -7,7 +7,7 @@ Welcome! During this ungraded lab you will be conducting a load test on the serv
     -  batches of 32
     -  batches of 64
 
-Technically there are only two servers (the one with and the one without batching) but you will for practicality sake consider them as separate one since they will handle different amounts of data.
+Technically there are only two servers (the one with and the one without batching) but you will for sake of practicality consider them as separate ones since they will handle different amounts of data.
 
 You will do this by using [Locust](https://locust.io/) which is a great Open Source load testing tool and [Docker Compose](https://docs.docker.com/compose/) which allows you to run multiple-container applications.
 
@@ -17,7 +17,12 @@ You will spin a total of 5 containers, 4 for each one of the servers previously 
 docker pull locustio/locust
 ```
 
-You should also have the images `mlepc4w2-ugl:no-batch` and `mlepc4w2-ugl:with-batch` which you built during the previous lab. Before going forward make sure you have these two images as well as the `locustio/locust:latest` one. You can double check using the `docker images` command.
+You should also have the images `mlepc4w2-ugl:no-batch` and `mlepc4w2-ugl:with-batch` which you built during the previous lab. **Before going forward make sure you have these two images as well as the `locustio/locust:latest` one**. You can double check using the `docker images` command. 
+
+Open a terminal and `cd` into the directory that contains the files needed by this lab. Assuming you are on the root of the repo you can use the command `cd course4/week2-ungraded-labs/C4_W2_Lab_3_Latency_Test_Compose`.
+
+
+Let's get started!
 
 -----
 

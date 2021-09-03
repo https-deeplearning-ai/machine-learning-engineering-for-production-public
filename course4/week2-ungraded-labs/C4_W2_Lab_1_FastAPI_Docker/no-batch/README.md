@@ -1,12 +1,12 @@
 ## One prediction per request
 
-You can find all of the following code in the `no-batch/` directory. In your terminal `cd` to this directory to continue with the lab.
+You can find all of the following code in the `no-batch/` directory. In your terminal `cd` to this directory to continue with the lab. If you are currently within the root of the repo you can use the command `cd course4/week2-ungraded-labs/C4_W2_Lab_1_FastAPI_Docker/no-batch/`.
 
-Notice that the server's code must be within a file named `main.py` following FastAPI's guidelines.
+Notice that the server's code must be in the file `main.py` within a directory called `app`, following FastAPI's guidelines.
 
 ### Coding the server
 
-Begin by importing the necessary dependencies. You will be using `pickle` for loading the pre-trained model saved in the `wine.pkl` file, `numpy` for tensor manipulation, and the rest for developing the web server with `FastAPI`.
+Begin by importing the necessary dependencies. You will be using `pickle` for loading the pre-trained model saved in the `app/wine.pkl` file, `numpy` for tensor manipulation, and the rest for developing the web server with `FastAPI`.
 
 Also, create an instance of the `FastAPI` class. This instance will handle all of the functionalities for the server:
 
@@ -95,7 +95,7 @@ def predict(wine: Wine):
     return {"Prediction": pred}
 
 ```
-Now the server is ready for inference. If you want to try it locally (given that you have the required dependencies installed) you can do so by using the command `uvicorn main:app --reload` while on the same directory as the `main.py` file. However this is not required as you will be dockerizing this server next.
+Now the server's code is ready for inference, although you still need to spin it up. If you want to try it locally (given that you have the required dependencies installed) you can do so by using the command `uvicorn main:app --reload` while on the same directory as the `main.py` file. **However this is not required as you will be dockerizing this server next**.
 
 ## Dockerizing the server
 
@@ -125,10 +125,13 @@ The `Dockerfile` is made up of all the instructions required to build your image
 FROM frolvlad/alpine-miniconda3:python3.7
 ```
 
-The `FROM` instruction allows you to select a pre-existing image as the base for your new image. **This means that all of the software available in the base image will also be available on your own.** This is one of Docker's nicest features since it allows for reusing images when needed. In this case your base image is `frolvlad/alpine-miniconda3:python3.7`, let's break it down:
-    - `frolvlad` is the username of the author of the image.
-    - `alpine-miniconda3` is its name.
-    - `python3.7` is the image's tag.
+The `FROM` instruction allows you to select a pre-existing image as the base for your new image. **This means that all of the software available in the base image will also be available on your own.** This is one of Docker's nicest features since it allows for reusing images when needed. 
+
+In this case your base image is `frolvlad/alpine-miniconda3:python3.7`, let's break it down:
+
+- `frolvlad` is the username of the author of the image.
+- `alpine-miniconda3` is its name.
+- `python3.7` is the image's tag.
 
 This image contains an [alpine](https://alpinelinux.org/) version of Linux, which is a distribution created to be very small in size. It also includes [miniconda](https://docs.conda.io/en/latest/miniconda.html) with Python 3. Notice that the tag let's you know that the specific version of Python being used is 3.7. Tagging is great as it allows you to create different versions of similar images. In this case you could have this same image with a different version of Python such as 3.5.
 
@@ -174,6 +177,8 @@ Containers are usually meant to start and carry out a single task. This is why t
 ```Dockerfile
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
+
+What is meant by `JSON` like format is that Docker uses `JSON` for its configurations and the `CMD` instruction expects the commands as a list that follows `JSON` conventions.
 
 ### Putting it all together
 
