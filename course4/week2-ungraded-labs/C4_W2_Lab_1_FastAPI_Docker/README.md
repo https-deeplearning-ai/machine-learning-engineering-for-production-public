@@ -42,7 +42,7 @@ or for cloning via SSH use:
 git clone git@github.com:https-deeplearning-ai/machine-learning-engineering-for-production-public.git
 ```
 
-Since these labs are on beta test stage, they are still not on the `main` branch. To switch to the branch that contains the labs use the command `git checkout chocolate_test` while inside this repo.
+--------
 
 Let's get started by jumping to the section [Part 1 - One prediction per request](./no-batch/README.md)!
 
