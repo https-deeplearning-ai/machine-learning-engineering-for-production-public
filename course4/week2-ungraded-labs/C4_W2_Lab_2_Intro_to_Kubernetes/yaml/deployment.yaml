@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tf-serving-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tf-serving
+  template:
+    metadata:
+      labels:
+        app: tf-serving
+    spec:
+      containers:
+      - name: tf-serving
+        image: tensorflow/serving
+        envFrom:
+        - configMapRef:
+            name: tfserving-configs
+        ports:
+        - containerPort: 8501
+        volumeMounts:
+          - name: tf-serving-volume
+            mountPath: /models/half_plus_two
+        resources:
+          requests:
+            memory: 32M
+            cpu: 5m
+          limits:
+            memory: 64M
+            cpu: 10m
+
+      volumes:
+        - name: tf-serving-volume
+          hostPath:
+            path: /var/tmp/saved_model_half_plus_two_cpu
+            type: Directory
