@@ -1,6 +1,6 @@
 # Week 2 Ungraded Lab: Load testing servers with Docker Compose and Locust
 
-Welcome! During this ungraded lab you will be conducting a load test on the servers you coded in the previous ungraded lab. You will compare latency across four servers:
+Welcome! During this ungraded lab you will be conducting a load test on the servers you coded in a previous ungraded lab (first one of this week). You will compare latency across four servers:
 - The server that didn't support batching
 - The one with batching and using:
     -  batches of 1 
