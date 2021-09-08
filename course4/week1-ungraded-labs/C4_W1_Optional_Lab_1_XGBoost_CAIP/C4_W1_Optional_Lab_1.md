@@ -1,8 +1,8 @@
 # Ungraded Lab (Optional): Build, train, and deploy an XGBoost model on Cloud AI Platform
 
-In this **optional** tutorial, you will go through the same steps that Laurence did in his screencast. You will train an XGBoost model then see how you can use a managed service to deploy and serve this model in Google Cloud Platform (GCP). This is based on the Codelabs provided [here](https://codelabs.developers.google.com/codelabs/xgb-caip-e2e#0) and we updated some parts for clarity.
+In this **optional** tutorial, you will go through the same steps shown in the previous screencast. You will train an XGBoost model then see how you can use a managed service to deploy and serve this model in Google Cloud Platform (GCP). This is based on the Codelabs provided [here](https://codelabs.developers.google.com/codelabs/xgb-caip-e2e#0) and we updated some parts for clarity.
 
-This exercise requires a GCP account but don't worry if you don't have one. You will be using the same tools in the course assignements and you will get free usage of GCP in those labs. Laurence already showed you how to use the tool and you will get more hands on with it in next week's assignments. 
+This exercise requires a GCP account but don't worry if you don't have one. You will be using the same tools in the course assignements and you will get free usage of GCP in those labs. You already saw how to use the tool in the screencast and you will get more hands on with it in next week's assignments. 
 
 Alternatively, if you don't have a Google Cloud Platform (GCP) account yet, you can get a free trial by clicking the `Get Started for Free` button [here](https://cloud.google.com/free). Within 24 hours, you will get 300USD free credits and this exercise will just take 1USD (or less) of that total amount. Just take note of the cleanup instructions mentioned in the last bullet point below to delete all resources you've created in the tutorial. That should prevent recurring costs. Once you have it setup and you have your free credits, you can go to the [Cloud Console](https://console.cloud.google.com/) to start the lab.
 
