@@ -199,7 +199,7 @@ The following code will create an XGBoost model:
 
 ```
 model = xgb.XGBRegressor(
-    objective='reg:linear'
+    objective='reg:squarederror'
 )
 ```
 
@@ -249,7 +249,7 @@ Let's first define some environment variables that we'll be using throughout the
 ```
 # Update these to your own GCP project, model, and version names
 GCP_PROJECT = '<YOUR_PROJECT_ID>'
-MODEL_BUCKET = '<YOUR_PROJECT_ID>'
+MODEL_BUCKET = 'gs://<YOUR_PROJECT_ID>'
 VERSION_NAME = 'v1'
 MODEL_NAME = 'baby_weight'
 ```
