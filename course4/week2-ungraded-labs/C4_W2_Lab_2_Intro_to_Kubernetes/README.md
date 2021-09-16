@@ -8,7 +8,7 @@ In the previous reading item, you went through the basics of Kubernetes by doing
 * access the deployment using a Nodeport service
 * autoscale the deployment to dynamicaly handle incoming traffic 
 
-You should be able to run all the commands using Mac and Linux (tested on Ubuntu) CLI, or Windows Powershell (run as Administrator). In case you have limited resources or can't install in your workstation, don't worry about it. You can still refer to this document later and we'll show the expected output at each step.
+You should be able to run all the commands using Mac and Linux (tested on Ubuntu) CLI, Windows Powershell (run as Administrator) and Git Bash. In case you have limited resources or can't install in your workstation, don't worry about it. You can still refer to this document later and we'll show the expected output at each step.
 
 ## Installation
 
@@ -25,6 +25,17 @@ You will need to install the following tools to go through this lab:
 * **kubectl** - the command line tool for interacting with Kubernetes clusters. Installation instructions can be found [here](https://kubernetes.io/docs/tasks/tools/)
 
 * **Minikube** - a Kubernetes distribution geared towards new users and development work. It is not meant for production deployments however since it can only run a single node cluster on your machine. Installation instructions [here](https://minikube.sigs.k8s.io/docs/start/).
+
+<details>
+<summary> <i>Windows Users: Please click here for additional notes. </i></summary>
+
+1. Make sure that the directories to the `curl` and `kubectl` binaries are setup in your system `PATH` (or `Path`). That will allow you to execute these in the command line from any directory. Instructions can be found [here](https://www.computerhope.com/issues/ch000549.htm) in case you need to review how this is done.
+2. You may need to append a `.exe` in the commands later to make use of `curl` and `kubectl`. For example, if you see `curl --help`, please do `curl.exe --help` instead.
+3. In case you have [Git for Windows](https://git-scm.com/download/win) setup in your machine, then you can use the `Git Bash` CLI bundled with that package instead of `Windows Powershell`. Just search for it in the Search Bar to see if it is already in your system. That CLI runs like a Linux terminal so most of the commands in the next sections will run as is. But we still placed instructions in case you can only use Powershell.
+4. If you've already setup WSL2 in the previous labs, then you may have a more seamless experience running this lab there as well.
+---
+</details>
+</br>
 
 ## Architecture
 
@@ -57,9 +68,26 @@ minikube start --mount=True --mount-string="/var/tmp:/var/tmp" --vm-driver=virtu
 ```
 
 For Windows:
+
 ```
 minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=virtualbox
 ```
+
+<details>
+<summary> <i>Troubleshooting: Please click here if you're getting errors with these commands. </i></summary>
+
+Some learner reported prompts about driver errors and thus, they can't make Virtualbox the VM engine. If you also run into the same issue and can't resolve it, you can just fallback to Docker:
+
+```
+minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=docker
+```
+
+This would require revisions to some of the commands later and we placed that in *Troubleshooting* sections as well.
+
+---
+
+</details>
+</br>
 
 
 
@@ -123,7 +151,7 @@ As before, you can apply this file to create the object:
 kubectl apply -f yaml/deployment.yaml
 ```
 
-Running `kubectl get deploy` afterwards should show you something like below to tell you that the pod is ready.
+Running `kubectl get deploy` after around 90 seconds should show you something like below to tell you that the deployment is ready.
 
 ```
 NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
@@ -147,11 +175,65 @@ You can try accessing the deployment now as a sanity check. The following `curl`
 curl -d '{"instances": [1.0, 2.0, 5.0]}' -X POST $(minikube ip):30001/v1/models/half_plus_two:predict
 ```
 
-If the command above does not work, you can run `minikube ip` first to get the IP address of the Minikube node. It should return a local IP address like `192.168.99.102`. You can then plug this in the command above by replacing the `$(minikube ip)` string. For example:
+If the command above does not work, you can run `minikube ip` first to get the IP address of the Minikube node. It should return a local IP address like `192.168.99.102` (If you see `127.0.0.1`, please see the troubleshooting sections below). You can then plug this in the command above by replacing the `$(minikube ip)` string. For example:
 
 ```
 curl -d '{"instances": [1.0, 2.0, 5.0]}' -X POST http://192.168.99.102:30001/v1/models/half_plus_two:predict
 ```
+
+<details>
+<summary> <i> Troubleshooting: Click here if you are using Powershell and have VirtualBox as the VM driver </i> </summary>
+
+First, make sure that you have setup `curl` in your system `PATH` as mentioned in the curl installation instructions. Then run this command:
+
+```
+curl.exe -d '{\"instances\": [1.0, 2.0, 5.0]}' -X POST "$(minikube ip):30001/v1/models/half_plus_two:predict"
+```
+
+The changes compared to the Mac/Linux command are:
+
+* use `curl.exe` to avoid confusion with the Windows built-in `curl`. The latter is an alias for `Invoke-WebRequest`. This also implies that you’ve added the curl path to your PATH as mentioned in the curl installation instructions.
+
+* the additional `\` in the `instances` string, as well as the additional `"` in the POST URL are needed so Powershell can parse it correctly
+
+---
+</details>
+<br>
+
+<details>
+<summary> <i> Troubleshooting: Click here if you used Docker instead of Virtualbox as the VM runtime </i> </summary>
+
+You will most likely get a refused connection here because the network is not yet setup. To get around that, please run this command in a separate window: `minikube service tf-serving-service`. You will see an output like below 
+
+```
+|-----------|--------------------|----------------------|---------------------------|
+| NAMESPACE |        NAME        |     TARGET PORT      |            URL            |
+|-----------|--------------------|----------------------|---------------------------|
+| default   | tf-serving-service | tf-serving-http/8501 | http://192.168.20.2:30001 |
+|-----------|--------------------|----------------------|---------------------------|
+🏃  Starting tunnel for service tf-serving-service.
+|-----------|--------------------|-------------|------------------------|
+| NAMESPACE |        NAME        | TARGET PORT |          URL           |
+|-----------|--------------------|-------------|------------------------|
+| default   | tf-serving-service |             | http://127.0.0.1:60473 |
+|-----------|--------------------|-------------|------------------------|
+```
+
+This opens a tunnel to your service with a random port. Grab the URL at the bottom right box and use it in the curl command like this in Linux/Mac:
+
+```
+curl -d '{"instances": [1.0, 2.0, 5.0]}' -X POST http://127.0.0.1:60473/v1/models/half_plus_two:predict
+```
+
+or in Windows:
+
+```
+curl.exe -d '{\"instances\": [1.0, 2.0, 5.0]}' -X POST http://127.0.0.1:60473/v1/models/half_plus_two:predict
+```
+---
+
+</details>
+<br>
 
 If the command is successful, you should see the results returned by the model:
 
@@ -200,11 +282,62 @@ If it's showing `Unknown` instead of `0%` in the `TARGETS` column, you can try s
 ### Stress Test
 
 
-To test the autoscaling capability of your deployment, we provided a short bash script (`request.sh`) that will just persistently send requests to your application. Please open a new terminal window, make sure that you're in the root directory of this README file, and and run this command:
+To test the autoscaling capability of your deployment, we provided a short bash script (`request.sh`) that will just persistently send requests to your application. Please open a new terminal window, make sure that you're in the root directory of this README file, then run this command (for Linux and Mac):
 
 ```
 /bin/bash request.sh
 ```
+
+<details>
+<summary> <i>Troubleshooting: Click here if you used Docker as the VM driver instead of VirtualBox </i></summary>
+
+If you are using a minikube tunnel for the `tf-serving-service`, then you need to modify the bash script to match the URL that you are using. Please open `request.sh` in a text editor and change `$(minikube ip)` to the URL specified in the `minikube tunnel` command earlier. For example:
+
+```
+#!/bin/bash
+
+while sleep 0.01;
+
+do curl -d '{"instances": [1.0, 2.0, 5.0]}' -X POST http://127.0.0.1:60473/v1/models/half_plus_two:predict;
+
+done
+``` 
+---
+
+</details>
+</br>
+
+<details>
+<summary><i>Troubleshooting: Click here if you are using Windows Powershell</i></summary>
+
+You will need a different script for Powershell. Please do these steps to run it:
+
+1 - Please run this command in Powershell to see if scripting is enabled:
+
+```
+Get-ExecutionPolicy
+```
+
+Please remember the output value so you can set it back after the exercise. If you haven't scripted before, it is most likely set to `Restricted`.
+
+2 - Enable scripting with this command:
+
+```
+Set-ExecutionPolicy RemoteSigned
+```
+
+3 - With that, you should be able run the script in Powershell with:
+
+```
+./request.ps1
+```
+
+4 - When you’re done with the entire exercise, you can revert to the original ExecutionPolicy in step 1 (e.g. `Set-ExecutionPolicy Restricted`).
+
+---
+</details>
+<br>
+
 
 You should see results being printed in quick succession:
 
@@ -273,7 +406,9 @@ service "tf-serving-service" deleted
 
 You can then re-create them all next time with one command by running `kubectl apply -f yaml`. Just remember to check if `metrics-server` is enabled and running.
 
-If you also want to destroy the VM, then you can run `minikube delete`.
+If you also want to destroy the VM, then you can run `minikube delete`. 
+
+If you used Powershell, then you can disable scripting as mentioned in the instructions earlier.
 
 ## Wrap Up
 
