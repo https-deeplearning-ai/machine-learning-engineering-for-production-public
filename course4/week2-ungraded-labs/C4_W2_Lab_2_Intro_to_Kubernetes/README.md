@@ -76,7 +76,7 @@ minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=virtual
 <details>
 <summary> <i>Troubleshooting: Please click here if you're getting errors with these commands. </i></summary>
 
-Some learner reported prompts about driver errors and thus, they can't make Virtualbox the VM engine. If you also run into the same issue and can't resolve it, you can just fallback to Docker:
+Some learners reported prompts about driver errors and thus, they can't make Virtualbox the VM driver when launching Minikube. In case you run into the same issue and can't resolve it, you can just fallback to Docker:
 
 ```
 minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=docker
