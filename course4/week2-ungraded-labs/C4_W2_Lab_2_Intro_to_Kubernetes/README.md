@@ -32,7 +32,7 @@ You will need to install the following tools to go through this lab:
 1. Make sure that the directories to the `curl` and `kubectl` binaries are setup in your system `PATH` (or `Path`). That will allow you to execute these in the command line from any directory. Instructions can be found [here](https://www.computerhope.com/issues/ch000549.htm) in case you need to review how this is done.
 2. You may need to append a `.exe` in the commands later to make use of `curl` and `kubectl`. For example, if you see `curl --help`, please do `curl.exe --help` instead.
 3. In case you have [Git for Windows](https://git-scm.com/download/win) setup in your machine, then you can use the `Git Bash` CLI bundled with that package instead of `Windows Powershell`. Just search for it in the Search Bar to see if it is already in your system. That CLI runs like a Linux terminal so most of the commands in the next sections will run as is. But we still placed instructions in case you can only use Powershell.
-4. If you've already setup WSL2 in the previous labs, then you may have a more seamless experience running this lab there as well.
+4. If you encounter errors about running VirtualBox alongside WSL2 similar to [this](https://github.com/MicrosoftDocs/WSL/issues/798), you can fallback to using Docker as the VM runtime for Minikube. Instructions are shown in the next sections in case you follow this path.
 ---
 </details>
 </br>
