@@ -257,7 +257,7 @@ with open("models/wine-95.pkl", "rb") as file:
 
 Once the change is saved, use git to push the changes as before. Use the following commands in sequence:
 
-- `git add -all`
+- `git add --all`
 - `git commit -m "Adding new classifier"`
 - `git push origin main`
 
@@ -315,7 +315,7 @@ This new test will check that the classifier is of type `sklearn.pipeline.Pipeli
 
 Once the change is saved, use git to push the changes as before. Use the following commands in sequence:
 
-- `git add -all`
+- `git add --all`
 - `git commit -m "Adding new classifier with scaling"`
 - `git push origin main`
 
