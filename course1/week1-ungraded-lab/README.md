@@ -48,7 +48,7 @@ Conda includes a lot of libraries so if you are only installing it to complete t
  
 ### 1. Creating a virtual Environment
  
-Now we assume that you either successfully installed conda or that it was previously available in your system. The first step is  creating a new developing environment. Let's set a new environment with python 3.7 with this command:
+Now we assume that you either successfully installed conda or that it was previously available in your system. The first step is  creating a new developing environment. Let's set a new environment with python 3.8 with this command:
  
 ```bash
 conda create --name mlep-w1-lab python=3.8
