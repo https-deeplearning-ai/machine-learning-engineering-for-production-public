@@ -128,7 +128,7 @@ docker stop container_name
 
 In this case the command will be: 
 ```bash
-docker stop laughing_yonath
+docker stop vigilant_clarke
 ```
 
 After some seconds you should see that the process exited on the terminal that you spined up the container.
