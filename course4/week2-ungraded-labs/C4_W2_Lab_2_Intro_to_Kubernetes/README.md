@@ -73,6 +73,12 @@ minikube start --mount=True --mount-string="/var/tmp:/var/tmp" --vm-driver=virtu
 Some learners reported the error `StartHost failed, but will try again: creating host: create: creating: Error setting up host only network on machine start: The host-only adapter we just created is not visible. This is a well known VirtualBox bug. You might want to uninstall it and reinstall at least version 5.0.12 that is is supposed to fix this issue` although they had already upgraded or installed VirtualBox 6+. A reboot was required to take effect, message was presented inside `system-preferences -> security & privacy -> general.`
 After the reboot, delete any old VMs with `minikube delete` and rerun the original `minikube start --mount=True --mount-string="/var/tmp:/var/tmp" --vm-driver=virtualbox`.
 
+---
+
+</details>
+</br>
+
+
 For Windows:
 
 ```
