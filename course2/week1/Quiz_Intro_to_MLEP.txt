@@ -1,0 +1,185 @@
+Intro to MLEP
+Total points 10
+1.
+Question 1
+Static datasets are used for production ML modeling.
+
+1 / 1 point
+
+> False
+
+
+True
+
+Correct
+That's it! Dynamic real-world data is used.
+
+2.
+Question 2
+In production ML, the design priority is fast training.
+
+1 / 1 point
+
+> No
+
+
+Yes 
+
+Correct
+Correct! Fast training and choosing a high-performance algorithm are the design priorities for prototypes or research ML.
+
+3.
+Question 3
+Developers adhere to modern software development to produce low-maintenance software, and to address project evolution. Select all the key aspects of modern software development (Check all that apply):
+
+0.75 / 1 point
+
+> Testability
+
+Correct
+Yes! The data entering the system is continuously monitored and tested.
+
+
+Fast Training
+
+
+> Monitoring
+
+Correct
+ Right on! The deployed model's performance is properly evaluated.
+
+
+Best practices
+
+You didn’t select all the correct answers
+4.
+Question 4
+Model-performance needs to be continuously monitored, and new data, ingested and re-trained.
+
+1 / 1 point
+
+> Yes
+
+
+No
+
+Correct
+Good job! After deployment, it’s necessary to continuously evaluate the model's performance.
+
+5.
+Question 5
+ML pipeline workflows are almost always DAGs.
+
+1 / 1 point
+
+> True
+
+
+False
+
+Correct
+Well done! The components of an ML pipeline are scheduled based on dependencies defined by a DAG.
+
+6.
+Question 6
+TensorFlow Extended (TFX) is an end-to-end platform for deploying production ML pipelines.
+
+1 / 1 point
+
+No
+
+
+> Yes
+
+Correct
+You got it right! TFX is used to build and manage ML pipelines in production.
+
+7.
+Question 7
+Production machine learning combines which two key disciplines?
+
+1 / 1 point
+
+Feature selection and engineering
+
+
+Software testing
+
+
+> Modern software development
+
+Correct
+Keep it up! Well-designed software that adheres to best practices is key for the success of a production grade machine learning system.
+
+
+Machine learning development
+
+> Correct
+Nice going! ML Development focuses on specific issues related with data and model predictions quality.
+
+8.
+Question 8
+What are the unique challenges to overcome in a production-grade ML system? (Check all that apply)
+
+0.5714285714285714 / 1 point
+
+> Handling continuously changing data.
+
+Correct
+Indeed! Data will change over the life cycle of a production system, which can harm its performance.
+
+
+Continually operating while in production.
+
+
+Assessing model performance.
+
+
+> Building integrated ML systems.
+
+Correct
+Very well! ML systems perform all operations starting from ingesting the data into the system to deployment.
+
+
+Training the model on real world data.
+
+
+Optimizing computational resources and costs.
+
+
+Deploying the model to serve requests.
+
+9.
+Question 9
+Production grade machine learning challenges are addressed by implementing an important concept:
+
+0 / 1 point
+
+> Machine learning pipelines
+
+
+Directed Acyclic Graphs (DAGs)
+
+
+Orchestrators
+
+
+Tensorflow Extended (TFX) 
+
+
+10.
+Question 10
+TensorFlow Lite is a deep learning framework to deploy TFX pipelines into:
+
+1 / 1 point
+
+> Mobile devices
+
+
+Web browser
+
+
+Servers
+
+Correct
+That’s it! Tensorflow Lite is the tool for deploying TFX pipeline into mobile and IoT devices.
