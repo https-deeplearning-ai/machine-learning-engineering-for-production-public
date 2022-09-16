@@ -61,10 +61,16 @@ conda activate mlep-w1-lab
 ```
  
 At this point, you will do all your libraries installation and work in this environment. So, whenever working on this ungraded lab, check the mlep-w1-lab environment is active.
+
+**Note**: If you have a Mac M1 then read this [guide](./mac_m1.md) before doing the next steps or try the version of this lab that is hosted in Coursera.
  
 ### 2. Installing dependencies using PIP 
  
-Before proceeding, double check that you are currently on the `week1-ungraded-lab` directory, which includes the `requirements.txt` file. This file lists all the required dependencies and their respective versions. Now use the following command to install the required dependencies:
+Before proceeding, double check that you are currently on the `week1-ungraded-lab` directory, which includes the `requirements.txt` file. This file lists all the required dependencies and their respective versions. 
+
+If you are on a Mac M1 be sure to have installed Tensorflow and OpenCV as described in the [guide](./mac_m1.md) and deleted these libraries from the `requirements.txt` file.
+
+Now use the following command to install the required dependencies:
  
 ```bash
 pip install -r requirements.txt
