@@ -42,7 +42,7 @@ Type `ls` and let's take a quick look at the content inside `week1-ungraded-lab`
  
 ### Prerequisites: Have [conda](https://docs.conda.io/en/latest/) installed on your local machine.
  
-You will use Conda as an environment management system so that all the dependencies you need for this ungraded lab are stored in an isolated environment.
+You will use Conda as an environment management system so that all the dependencies you need for this ungraded lab are stored in an isolated environment. Make sure you have Python 3.6.x, 3.7.x or 3.8.x version installed, because some of the dependencies are not supporting latest version of Python.
  
 Conda includes a lot of libraries so if you are only installing it to complete this lab , we suggest using [miniconda](https://docs.conda.io/en/latest/miniconda.html), which is a minimal version of conda.
  
