@@ -2,6 +2,8 @@
 
 Some learners in a our Discourse community have found a method to get this lab running in Macs that use the M1 chip.
 
+**Notice that this only works for `Method 1 Creating a virtual Environment` and not for the Docker method.**
+
 If this method stops working please raise an issue to let us know!
 
 ----
