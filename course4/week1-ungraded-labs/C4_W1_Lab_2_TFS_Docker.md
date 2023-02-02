@@ -23,7 +23,7 @@ This is the most minimal image that you can run TFS on. It contains all of the n
 
 Now you will clone the official TFS [repo](https://github.com/tensorflow/serving), which contains a dummy model named `Half Plus Two` that returns `0.5 * x + 2` for any value of `x`. 
 
-You will do the cloning in the temporal directory of your filesystem so that your machine does not get cluttered. 
+You will do the cloning in the temporary directory of your filesystem so that your machine does not get cluttered. 
 
 Run the following three commands:
 
@@ -36,7 +36,7 @@ git clone https://github.com/tensorflow/serving
 ```
 
 These commands perform these operations in order:
-- Create a directory called `tfserving` under the temporal directory `/tmp`.
+- Create a directory called `tfserving` under the temporary directory `/tmp`.
 - Change your current directory to the one that was just created
 - Clone the repo in that location
 
