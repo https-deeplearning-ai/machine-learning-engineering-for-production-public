@@ -237,7 +237,7 @@ Now head over to [localhost:80](http://localhost:80) and you should see a messag
 
 ## Make requests to the server
 
-Now that the server is listening to requests on port 80, you can send `POST` requests to it for predicting classes of wine.
+Now that the server is listening to requests on port 80, you can send `POST` requests to it for predicting classes of wine. 
 
 Every request should contain the data that represents a wine in `JSON` format like this:
 
@@ -263,7 +263,7 @@ This example represents a class 1 wine.
 
 Remember from Course 1 that FastAPI has a built-in client for you to interact with the server. You can use it by visiting [localhost:80/docs](http://localhost:80/docs)
 
-You can also use `curl` and send the data directly with the request like this:
+You can also use `curl` and send the data directly with the request like this (notice that you need to open a new terminal window for this as the one you originally used to spin up the server is logging info and is not usable until you stop it):
 
 ```bash
 curl -X 'POST' http://localhost/predict \
