@@ -76,13 +76,24 @@ minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=virtual
 <details>
 <summary> <i>Troubleshooting: Please click here if you're getting errors with these commands. </i></summary>
 
-Some learners reported prompts about driver errors and thus, they can't make Virtualbox the VM driver when launching Minikube. In case you run into the same issue and can't resolve it, you can just fallback to Docker:
+* Some learners reported prompts about driver errors and thus, they can't make Virtualbox the VM driver when launching Minikube. In case you run into the same issue and can't resolve it, you can just fallback to Docker:
 
-```
-minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=docker
-```
+   ```
+   minikube start --mount=True --mount-string="C:/tmp:/var/tmp" --vm-driver=docker
+   ```
 
-This would require revisions to some of the commands later and we placed that in *Troubleshooting* sections as well.
+   This would require revisions to some of the commands later and we placed that in *Troubleshooting* sections as well.
+   
+* Some learners reported getting an error about trouble accessing `https://k8s.gcr.io` and needing to configure a proxy. For that, please do these steps before starting `minikube`:
+
+   * Run `minikube ip`. This will display an IP address in your terminal.
+   * Replace `<your_minikube_ip>` in the command below with the IP address you saw above:
+   
+      ```
+   set NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.49.0/24,192.168.39.0/24,<your_minikube_ip>
+      ```
+   
+   * Start minikube
 
 ---
 
@@ -180,6 +191,18 @@ If the command above does not work, you can run `minikube ip` first to get the I
 ```
 curl -d '{"instances": [1.0, 2.0, 5.0]}' -X POST http://192.168.99.102:30001/v1/models/half_plus_two:predict
 ```
+
+<details>
+<summary> <i> Troubleshooting: Click here if you are using Windows </i> </summary>
+
+Windows users might see an error about invalid characters when using single quotes in the JSON object. You can try using double quotes instead. Here are two variations:
+
+* `curl -d "{""instances"": [1.0, 2.0, 5.0]}" -X POST $(minikube ip):30001/v1/models/half_plus_two:predict`
+* `curl -d "{\"instances\": [1.0, 2.0, 5.0]}" -X POST $(minikube ip):30001/v1/models/half_plus_two:predict`
+
+---
+</details>
+<br>
 
 <details>
 <summary> <i> Troubleshooting: Click here if you are using Powershell and have VirtualBox as the VM driver </i> </summary>
