@@ -64,7 +64,7 @@ Before jumping to the directory with the files for this lab, notice a hidden fol
 
 name: C4W3-Ungraded-Lab
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push request events only when there are changes in the desired path
   push:
@@ -89,19 +89,20 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7.7'
-      - 
+          python-version: '3.7'
+      -
         name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy fastapi uvicorn scikit-learn pytest
+          pip install -r requirements.txt
       -
         name: Test with pytest
         run: |
+          cd app/
           pytest
 ```
 
@@ -134,12 +135,12 @@ In the next part you need to define all of the jobs than will run when this acti
       -
         name: Checkout
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7.7'
-      - 
+          python-version: '3.7'
+      -
         name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -154,7 +155,7 @@ In the next part you need to define all of the jobs than will run when this acti
 Finally you need to specify the `steps` for this action to be completed. This is a sequence of commands to achieve the functionality you strive for.  `steps` have several values associated such as:
 - `name`: The name of the step.
 
-- `uses`: You can specify an already existing `Action` as an step on one of your own. This is pretty cool because it allows for reutilization of Actions. 
+- `uses`: You can specify an already existing `Action` as an step on one of your own. This is pretty cool because it allows for reutilization of Actions.
 - `run`: Instead of using an existing Action you might need to run a command. Since you are using `bash` inside a Linux VM, these commands should follow the correct syntax.
 - `with`: You might need to specify some additional values. This field is for such cases.
 
@@ -175,13 +176,14 @@ Within the `app` directory a copy of the server that serves predictions for the 
 
 ### Unit testing with pytest
 
-To perform unit testing you will use the `pytest` library. When using this library you should place your tests within a Python script that starts with the prefix `test_`, in this case it is called `test_clf.py` as you will be testing the classifier. 
+To perform unit testing you will use the `pytest` library. When using this library you should place your tests within a Python script that starts with the prefix `test_`, in this case it is called `test_clf.py` as you will be testing the classifier.
 
 Let's take a look at the contents of this file:
 
 ```python
 import pickle
 from main import clf
+
 
 def test_accuracy():
 
@@ -207,11 +209,11 @@ If the accuracy is greater than 90% then the test passes. Otherwise it fails.
 
 To run the unit test using the CI/CD pipeline you need to push some changes to the remote repository. To do this, **add a comment somewhere in the `main.py` file and save the changes**.
 
-Now you will use git to push changes to the remote version of your fork. 
+Now you will use git to push changes to the remote version of your fork.
 - Begin by checking that there was a change using the `git status` command. You should see `main.py` in the list that is outputted.
 
 - Now stage all of the changes by using the command `git add --all`.
-- Create a commit with the command `git commit -m "Testing the CI/CD pipeline"`. 
+- Create a commit with the command `git commit -m "Testing the CI/CD pipeline"`.
 - Finally push the changes using the command `git push origin main`.
 
 With the push the CI/CD pipeline should have been triggered. To see it in action visit your forked repo in a browser and click the `Actions` button.
@@ -300,12 +302,12 @@ And add a new unit test that looks like this:
 ```python
 def test_pipeline_and_scaler():
 
-    # Check if clf is an instance of sklearn.pipeline.Pipeline 
+    # Check if clf is an instance of sklearn.pipeline.Pipeline
     isPipeline = isinstance(clf, Pipeline)
     assert isPipeline
-    
+
     if isPipeline:
-        # Check if first step of pipeline is an instance of 
+        # Check if first step of pipeline is an instance of
         # sklearn.preprocessing.StandardScaler
         firstStep = [v for v in clf.named_steps.values()][0]
         assert isinstance(firstStep, StandardScaler)

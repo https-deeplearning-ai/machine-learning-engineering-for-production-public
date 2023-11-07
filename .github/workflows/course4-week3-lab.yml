@@ -2,7 +2,7 @@
 
 name: C4W3-Ungraded-Lab
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push request events only when there are changes in the desired path
   push:
@@ -19,7 +19,7 @@ jobs:
       run:
         # Use bash as the shell
         shell: bash
-        # Specify the working directory for the worflow
+        # Specify the working directory for the workflow
         working-directory: course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -27,12 +27,12 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
-      - 
+      -
         name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.11'
-      - 
+          python-version: '3.7'
+      -
         name: Install dependencies
         run: |
           python -m pip install --upgrade pip
