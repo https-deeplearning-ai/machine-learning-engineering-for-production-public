@@ -7,3 +7,5 @@ python-multipart==0.0.5
 fastapi==0.70.1
 nest-asyncio==1.5.4
 jupyterlab==3.2.5
+protobuf==3.20
+
