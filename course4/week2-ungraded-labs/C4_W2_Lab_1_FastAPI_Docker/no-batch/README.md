@@ -151,7 +151,7 @@ RUN pip install -r requirements.txt && \
 ```
 Notice that two commands were chained together using the `&&` operator. After you installed the libraries specified within `requirements.txt` you don't have more use for that file so it is a good idea to delete it so the image includes only the necessary files for your server to run.
 
-This can be done using two `RUN` instructions, however, it is a good practice to chain together commands in this manner since Docker creates a new layer every time it encounters a `RUN`, `COPY` or `ADD` instruction. This will result in a bigger image size. If you are interest in best practices for writing Dockerfiles be sure to check out this [resource](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
+This can be done using two `RUN` instructions, however, it is a good practice to chain together commands in this manner since Docker creates a new layer every time it encounters a `RUN`, `COPY` or `ADD` instruction. This will result in a bigger image size. If you are interested in best practices for writing Dockerfiles be sure to check out this [resource](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 
 
 ### Exposing the port
