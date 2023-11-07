@@ -88,20 +88,21 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - 
         name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.7.7'
+          python-version: '3.8'
       - 
         name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install numpy fastapi uvicorn scikit-learn pytest
+          pip install -r requirements.txt
       -
         name: Test with pytest
         run: |
+          cd app/
           pytest
 ```
 

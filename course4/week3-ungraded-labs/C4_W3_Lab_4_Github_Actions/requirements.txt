@@ -1,4 +1,4 @@
-fastapi
-uvicorn
-scikit-learn
-pytest
+fastapi==0.104.1
+uvicorn==0.24.0
+scikit-learn==0.24.2
+pytest==7.4.3

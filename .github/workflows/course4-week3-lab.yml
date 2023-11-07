@@ -19,19 +19,19 @@ jobs:
       run:
         # Use bash as the shell
         shell: bash
-        # Specify the working directory for the worflow
+        # Specify the working directory for the workflow
         working-directory: course4/week3-ungraded-labs/C4_W3_Lab_4_Github_Actions/
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - 
         name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.8'
       - 
         name: Install dependencies
         run: |
