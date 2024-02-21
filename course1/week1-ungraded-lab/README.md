@@ -45,7 +45,9 @@ Type `ls` and let's take a quick look at the content inside `week1-ungraded-lab`
 You will use Conda as an environment management system so that all the dependencies you need for this ungraded lab are stored in an isolated environment.
  
 Conda includes a lot of libraries so if you are only installing it to complete this lab , we suggest using [miniconda](https://docs.conda.io/en/latest/miniconda.html), which is a minimal version of conda.
- 
+
+If you want to use it to learn machine learning or data science, it is easier to get started with [anaconda](https://www.anaconda.com/download), which has many pre-installed packages generally used in those fields.
+
 ### 1. Creating a virtual Environment
  
 Now we assume that you either successfully installed conda or that it was previously available in your system. The first step is  creating a new developing environment. Let's set a new environment with python 3.8 with this command:
