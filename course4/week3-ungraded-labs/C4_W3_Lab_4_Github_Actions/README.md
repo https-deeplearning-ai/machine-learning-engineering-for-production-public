@@ -134,12 +134,12 @@ In the next part you need to define all of the jobs than will run when this acti
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - 
         name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.7.7'
+          python-version: '3.8'
       - 
         name: Install dependencies
         run: |
@@ -162,9 +162,9 @@ Finally you need to specify the `steps` for this action to be completed. This is
 
 Let's understand every step in order:
 
-- The first step uses the `actions/checkout@v2` Action. This is usually included in every Action since it allows GitHub to access or check-out your repo.
+- The first step uses the `actions/checkout@v4` Action. This is usually included in every Action since it allows GitHub to access or check-out your repo.
 
-- Now that your repo has been checked-out, you need to set an environment capable of running your Python code. To accomplish this the `actions/setup-python@v2` Actions is used while specifying the desired Python version.
+- Now that your repo has been checked-out, you need to set an environment capable of running your Python code. To accomplish this the `actions/setup-python@v4` Actions is used while specifying the desired Python version.
 - Having a Python supported environment it is time to install of the dependencies that your application needs. You can do so by using upgrading `pip` and then using it to install the dependencies listed in the `requirements.txt` file.
 - Finally you can run your unit tests by simply using the `pytest` command. Notice that you needed to `cd` into the `app` directory first.
 
