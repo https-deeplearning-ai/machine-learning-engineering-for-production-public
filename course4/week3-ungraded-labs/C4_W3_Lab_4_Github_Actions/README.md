@@ -155,7 +155,7 @@ In the next part you need to define all of the jobs than will run when this acti
 Finally you need to specify the `steps` for this action to be completed. This is a sequence of commands to achieve the functionality you strive for.  `steps` have several values associated such as:
 - `name`: The name of the step.
 
-- `uses`: You can specify an already existing `Action` as an step on one of your own. This is pretty cool because it allows for reutilization of Actions. 
+- `uses`: You can specify an already existing `Action` as a step on one of your own. This is pretty cool because it allows for reutilization of Actions. 
 - `run`: Instead of using an existing Action you might need to run a command. Since you are using `bash` inside a Linux VM, these commands should follow the correct syntax.
 - `with`: You might need to specify some additional values. This field is for such cases.
 
