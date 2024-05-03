@@ -23,3 +23,6 @@ def predict(wine: Wine):
     np_batches = np.array(batches)
     pred = clf.predict(np_batches).tolist()
     return {"Prediction": pred}
+'''
+To run the unit test using the CI/CD pipeline you need to push some changes to the remote repository. To do this, add a comment somewhere in the main.py file and save the changes.
+'''
