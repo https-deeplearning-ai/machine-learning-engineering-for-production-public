@@ -159,7 +159,7 @@ To test the different model versions you can use the `dog_example.json` file tha
 
 Since you defined labels for the versions of the models you can consume them either by using numerical versioning or labels.
 
-Begin by sending a `POST` request to version 1 of the model:
+Begin by sending a `POST` request to version 2 of the model:
 
 ```bash
 curl -X POST http://localhost:8501/v1/models/animals/versions/2:predict \
